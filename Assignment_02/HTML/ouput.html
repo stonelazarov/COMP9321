@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Monk</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="response.json"></script>
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: center;
+              padding: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;background-color: mediumseagreen;">Monk Moive Recommendation</h1>
+        <div class="container">
+        <div class="table-responsive">
+            <p><br/></p>
+            <table class="table table-boardered table-striped" id="moive_table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">title</th>
+                        <th>genres</th>
+                        <th>homepage</th>
+                        <th style="width:30%">overview</th>
+                        <th>poster_path</th>
+                        <th colspan="2">production_companies</th>
+                        <th>popularity </th> 
+                        <th style="width:10%">id</th> 
+                    </tr>
+                    </tbody>
+                    <tr>    
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>name</td>
+                        <td>id</td>
+                        <td></td>
+                        <td></td>                   
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </body>
+</html>
+
+<!-- Get JSON file to display it -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+$(document).ready(function(){
+    $.ajax({})
+    $.getJSON("https://github.com/Hrolong/Json/blob/master/response.json", function(data){
+      var moive_data = '';
+      $.each(data, function(key, value){
+          moive_data += '<tr>';
+          moive_data += '<td>' + value.title+'</td>';
+          moive_data += '<td>' + value.genres+'</td>';
+          moive_data += '<td>' + value.homepage+'</td>';
+          moive_data += '<td>' + value.overview+'</td>';
+          moive_data += '<td>' + value.poster_path+'</td>';
+          moive_data += '<td>' + value.production_companies+'</td>';
+          moive_data += '<td>' + value.populartity+'</td>';
+          moive_data += '<td>' + value.id+'</td>';
+          moive_data += '<tr>';
+      });
+      $('#moive_table').append(moive_data);   
+    });
+});        
+</script>
